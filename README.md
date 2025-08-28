@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Fusion Starter
 
-## Getting Started
+A Next.js 15 app router project with a small Express API, Tailwind CSS, Radix UI primitives, and a kanban-style demo UI. Built for quick prototyping with TypeScript, React Query, and modern tooling.
 
-First, run the development server:
+## Quickstart
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- App: http://localhost:3000
+- API examples: http://localhost:3000/api/ping and http://localhost:3000/api/demo (proxied via Next/Express when integrated)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev        # Start Next.js dev server
+pnpm build      # Build for production
+pnpm start      # Start production server
+pnpm typecheck  # Run TypeScript compiler checks
+pnpm format.fix # Run Prettier on the repo
+pnpm test       # Placeholder (no test runner configured)
+```
 
-## Learn More
+## Tech stack
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js 15 (App Router, TypeScript)
+- React 18
+- Tailwind CSS + tailwind-merge + tailwindcss-animate
+- Radix UI components and primitives
+- TanStack Query (React Query)
+- Zustand for lightweight state where needed
+- Express 5 (via `src/server`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+/workspace
+├─ src/
+│  ├─ app/                # Next App Router
+│  │  ├─ layout.tsx       # Root layout with QueryClient + TooltipProvider
+│  │  ├─ page.tsx         # Home page that renders the dashboard + Kanban
+│  │  └─ global.css       # Tailwind base styles
+│  ├─ components/
+│  │  ├─ ui/              # Reusable UI components (button, badge, sidebar, ...)
+│  │  ├─ kanban/          # Kanban board components
+│  │  └─ DashboardWithSidebar.tsx
+│  ├─ pages/              # Feature-level React components (e.g., BoardApp)
+│  ├─ lib/                # Shared utilities
+│  ├─ server/             # Express API (createServer, routes)
+│  │  ├─ index.ts
+│  │  └─ routes/
+│  │     └─ demo.ts
+│  └─ shared/             # Shared types/interfaces (e.g., API response types)
+├─ public/                # Static assets (icons, svg)
+├─ tailwind.config.ts
+├─ next.config.ts
+├─ tsconfig.json          # Uses path alias @/* -> ./src/*
+└─ package.json
+```
 
-## Deploy on Vercel
+## Development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- TypeScript strict mode is enabled.
+- Path alias `@/*` maps to `./src/*`. Example: `import { DemoResponse } from "@/shared/api"`.
+- Tailwind is configured to scan `./src/**/*.{js,ts,jsx,tsx,mdx}` and related app/pages/components folders.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### UI
+
+- Common components live in `src/components/ui` (button, badge, card, input, progress, sidebar, skeleton, tooltip).
+- The home page renders a dashboard with a Kanban board (`src/pages/BoardApp.tsx`).
+
+### API (Express)
+
+Express is scaffolded in `src/server`:
+
+```ts
+// src/server/index.ts
+export function createServer() {
+  const app = express();
+  app.use(cors());
+  app.use(express.json());
+
+  app.get("/api/ping", (_req, res) => {
+    const ping = process.env.PING_MESSAGE ?? "ping";
+    res.json({ message: ping });
+  });
+
+  app.get("/api/demo", handleDemo);
+  return app;
+}
+```
+
+```ts
+// src/server/routes/demo.ts
+export const handleDemo: RequestHandler = (_req, res) => {
+  res.status(200).json({ message: "Hello from Express server" });
+};
+```
+
+You can integrate this Express app with Next.js using a custom server or serverless adapter (e.g., `serverless-http`) depending on your deployment target.
+
+## Environment
+
+- Create a `.env` file if needed. Example:
+
+```
+PING_MESSAGE=custom ping
+```
+
+## Building & Running
+
+```bash
+pnpm build
+pnpm start
+```
+
+This runs the Next.js production server. If you wire Express into Next (or deploy as serverless functions), ensure your hosting environment supports the chosen integration.
+
+## Coding standards
+
+- Prettier is configured. Use `pnpm format.fix`.
+- ESLint uses `eslint-config-next`.
+- Prefer meaningful names and strict typing.
+
+## License
+
+MIT (change as needed).
