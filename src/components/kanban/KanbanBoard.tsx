@@ -11,16 +11,16 @@ import {
   useSensors,
   closestCorners,
 } from "@dnd-kit/core";
-
 import { Column } from "./Column";
 import { TaskCard } from "./TaskCard";
+import { Task, TaskStatus } from "@/shared/types";
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertCircle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useKanbanStore } from "@/app/store/kanban";
-import { Task, TaskStatus } from "@/shared/types";
+import { TaskCardPreview } from "./TaskCardPreview";
 
 const KanbanBoard = () => {
   const { columns, isLoading, error, loadTasks, moveTask } = useKanbanStore();
@@ -61,8 +61,22 @@ const KanbanBoard = () => {
 
     if (!over) return;
 
-    const taskId = active.id as string;
-    const newStatus = over.id as TaskStatus;
+    const taskId = String(active.id);
+
+    // Determine the target column id. When dropping over another task, `over.id`
+    // is that task's id, so we must read its containerId from sortable data.
+    let targetColumnId: TaskStatus | null = null;
+    const overData = over.data?.current as unknown as
+      | { sortable?: { containerId?: string } }
+      | undefined;
+
+    if (overData?.sortable?.containerId) {
+      targetColumnId = overData.sortable.containerId as TaskStatus;
+    } else {
+      targetColumnId = over.id as TaskStatus;
+    }
+
+    if (!targetColumnId) return;
 
     // Find current task
     const currentTask = columns
@@ -72,8 +86,8 @@ const KanbanBoard = () => {
     if (!currentTask) return;
 
     // Only move if status actually changed
-    if (currentTask.status !== newStatus) {
-      moveTask(taskId, newStatus);
+    if (currentTask.status !== targetColumnId) {
+      moveTask(taskId, targetColumnId);
     }
   };
 
@@ -82,16 +96,16 @@ const KanbanBoard = () => {
       <div className="flex-1 p-6">
         <div className="flex space-x-6 overflow-x-auto">
           {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="flex-1 ">
+            <div key={i} className="flex-1 min-w-[280px] max-w-[320px]">
               <Card>
                 <CardContent className="p-4">
                   <Skeleton className="h-6 w-32 mb-4" />
                   <div className="space-y-3">
                     {[1, 2, 3].map((j) => (
                       <div key={j} className="p-4 border rounded-lg">
-                        <Skeleton className=" w-24 mb-2" />
-                        <Skeleton className="w-full mb-2" />
-                        <Skeleton className=" w-3/4" />
+                        <Skeleton className="h-4 w-24 mb-2" />
+                        <Skeleton className="h-3 w-full mb-2" />
+                        <Skeleton className="h-3 w-3/4" />
                       </div>
                     ))}
                   </div>
@@ -123,7 +137,7 @@ const KanbanBoard = () => {
   }
 
   return (
-    <div className="flex-1 ">
+    <div className="flex-1 p-6">
       <DndContext
         sensors={sensors}
         collisionDetection={closestCorners}
@@ -131,7 +145,7 @@ const KanbanBoard = () => {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <div className="flex space-x-6 overflow-x-auto pb-4 ">
+        <div className="flex space-x-6 overflow-x-auto pb-4 h-[calc(100vh-220px)]">
           {columns.map((column) => (
             <Column key={column.id} column={column} />
           ))}
@@ -140,7 +154,7 @@ const KanbanBoard = () => {
         <DragOverlay>
           {activeTask ? (
             <div className="rotate-2 scale-105">
-              <TaskCard task={activeTask} />
+              <TaskCardPreview task={activeTask} />
             </div>
           ) : null}
         </DragOverlay>

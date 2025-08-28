@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import { Column as ColumnType } from "@/shared/types";
 import { Badge } from "@/components/ui/badge";
@@ -47,7 +49,7 @@ export function Column({ column }: ColumnProps) {
   const styles = columnStyles[column.id];
 
   return (
-    <div className="flex-1 min-w-[280px] max-w-[320px]">
+    <div className="flex-1 min-w-[280px] max-w-[300px]">
       <div className="h-full flex flex-col bg-white rounded-lg">
         {/* Column Header */}
         <div
@@ -89,6 +91,7 @@ export function Column({ column }: ColumnProps) {
           )}
         >
           <SortableContext
+            id={column.id}
             items={taskIds}
             strategy={verticalListSortingStrategy}
           >
