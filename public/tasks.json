@@ -1,0 +1,301 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "User Interview",
+      "description": "Conduct user interviews for product feedback",
+      "status": "todo",
+      "priority": "high",
+      "dueDate": "2024-04-15",
+      "assignees": [
+        {
+          "id": "user1",
+          "name": "John Doe",
+          "avatar": "JD",
+          "email": "john@example.com"
+        }
+      ],
+      "commentsCount": 2,
+      "attachmentsCount": 1,
+      "tags": ["research", "user-feedback"]
+    },
+    {
+      "id": "2",
+      "title": "Design System",
+      "description": "Create comprehensive design system components",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": "2024-04-20",
+      "assignees": [
+        {
+          "id": "user2",
+          "name": "Sarah Smith",
+          "avatar": "SS",
+          "email": "sarah@example.com"
+        },
+        {
+          "id": "user3",
+          "name": "Mike Johnson",
+          "avatar": "MJ",
+          "email": "mike@example.com"
+        }
+      ],
+      "commentsCount": 8,
+      "attachmentsCount": 0,
+      "tags": ["design", "components"]
+    },
+    {
+      "id": "3",
+      "title": "Speech",
+      "description": "Prepare presentation for upcoming conference",
+      "status": "todo",
+      "priority": "low",
+      "dueDate": "2024-04-25",
+      "assignees": [
+        {
+          "id": "user1",
+          "name": "John Doe",
+          "avatar": "JD",
+          "email": "john@example.com"
+        }
+      ],
+      "commentsCount": 1,
+      "attachmentsCount": 2,
+      "tags": ["presentation"]
+    },
+    {
+      "id": "4",
+      "title": "Wireframe",
+      "description": "Create wireframes for new feature",
+      "status": "todo",
+      "priority": "medium",
+      "dueDate": "2024-04-18",
+      "assignees": [
+        {
+          "id": "user4",
+          "name": "Emily Davis",
+          "avatar": "ED",
+          "email": "emily@example.com"
+        }
+      ],
+      "commentsCount": 0,
+      "attachmentsCount": 1,
+      "tags": ["design", "wireframe"]
+    },
+    {
+      "id": "5",
+      "title": "UI Design",
+      "description": "Design user interface for mobile app",
+      "status": "inprogress",
+      "priority": "high",
+      "dueDate": "2024-04-12",
+      "assignees": [
+        {
+          "id": "user2",
+          "name": "Sarah Smith",
+          "avatar": "SS",
+          "email": "sarah@example.com"
+        },
+        {
+          "id": "user5",
+          "name": "Alex Wilson",
+          "avatar": "AW",
+          "email": "alex@example.com"
+        }
+      ],
+      "commentsCount": 5,
+      "attachmentsCount": 3,
+      "tags": ["design", "mobile"]
+    },
+    {
+      "id": "6",
+      "title": "Check Clients Feedback",
+      "description": "Review and analyze client feedback from last sprint",
+      "status": "inprogress",
+      "priority": "medium",
+      "dueDate": "2024-04-16",
+      "assignees": [
+        {
+          "id": "user3",
+          "name": "Mike Johnson",
+          "avatar": "MJ",
+          "email": "mike@example.com"
+        }
+      ],
+      "commentsCount": 12,
+      "attachmentsCount": 2,
+      "tags": ["feedback", "review"]
+    },
+    {
+      "id": "7",
+      "title": "Copyright",
+      "description": "Review copyright and legal documentation",
+      "status": "inprogress",
+      "priority": "low",
+      "dueDate": "2024-04-22",
+      "assignees": [
+        {
+          "id": "user6",
+          "name": "Lisa Brown",
+          "avatar": "LB",
+          "email": "lisa@example.com"
+        }
+      ],
+      "commentsCount": 4,
+      "attachmentsCount": 1,
+      "tags": ["legal"]
+    },
+    {
+      "id": "8",
+      "title": "Filter sorting",
+      "description": "Implement advanced filtering and sorting functionality",
+      "status": "inprogress",
+      "priority": "medium",
+      "dueDate": "2024-04-19",
+      "assignees": [
+        {
+          "id": "user7",
+          "name": "Tom Anderson",
+          "avatar": "TA",
+          "email": "tom@example.com"
+        }
+      ],
+      "commentsCount": 3,
+      "attachmentsCount": 0,
+      "tags": ["development", "feature"]
+    },
+    {
+      "id": "9",
+      "title": "Prototype",
+      "description": "Build interactive prototype for user testing",
+      "status": "approved",
+      "priority": "high",
+      "dueDate": "2024-04-10",
+      "assignees": [
+        {
+          "id": "user8",
+          "name": "Chris Lee",
+          "avatar": "CL",
+          "email": "chris@example.com"
+        }
+      ],
+      "commentsCount": 15,
+      "attachmentsCount": 5,
+      "tags": ["prototype", "testing"]
+    },
+    {
+      "id": "10",
+      "title": "Detail Page",
+      "description": "Create detailed view for product information",
+      "status": "approved",
+      "priority": "medium",
+      "dueDate": "2024-04-14",
+      "assignees": [
+        {
+          "id": "user2",
+          "name": "Sarah Smith",
+          "avatar": "SS",
+          "email": "sarah@example.com"
+        }
+      ],
+      "commentsCount": 8,
+      "attachmentsCount": 2,
+      "tags": ["development", "page"]
+    },
+    {
+      "id": "11",
+      "title": "Animation preloaders",
+      "description": "Design and implement loading animations",
+      "status": "approved",
+      "priority": "low",
+      "dueDate": "2024-04-17",
+      "assignees": [
+        {
+          "id": "user9",
+          "name": "Diana Martinez",
+          "avatar": "DM",
+          "email": "diana@example.com"
+        }
+      ],
+      "commentsCount": 6,
+      "attachmentsCount": 3,
+      "tags": ["animation", "ui"]
+    },
+    {
+      "id": "12",
+      "title": "Sorting category",
+      "description": "Implement category-based sorting system",
+      "status": "approved",
+      "priority": "medium",
+      "dueDate": "2024-04-21",
+      "assignees": [
+        {
+          "id": "user7",
+          "name": "Tom Anderson",
+          "avatar": "TA",
+          "email": "tom@example.com"
+        }
+      ],
+      "commentsCount": 9,
+      "attachmentsCount": 1,
+      "tags": ["development", "sorting"]
+    },
+    {
+      "id": "13",
+      "title": "Group Management",
+      "description": "Build user group management functionality",
+      "status": "reject",
+      "priority": "high",
+      "dueDate": "2024-04-13",
+      "assignees": [
+        {
+          "id": "user10",
+          "name": "Robert Taylor",
+          "avatar": "RT",
+          "email": "robert@example.com"
+        }
+      ],
+      "commentsCount": 20,
+      "attachmentsCount": 4,
+      "tags": ["management", "users"]
+    },
+    {
+      "id": "14",
+      "title": "Design System",
+      "description": "Refactor existing design system components",
+      "status": "reject",
+      "priority": "medium",
+      "dueDate": "2024-04-11",
+      "assignees": [
+        {
+          "id": "user11",
+          "name": "Grace Wilson",
+          "avatar": "GW",
+          "email": "grace@example.com"
+        }
+      ],
+      "commentsCount": 15,
+      "attachmentsCount": 2,
+      "tags": ["design", "refactor"]
+    },
+    {
+      "id": "15",
+      "title": "Slider controls",
+      "description": "Implement interactive slider components",
+      "status": "reject",
+      "priority": "low",
+      "dueDate": "2024-04-24",
+      "assignees": [
+        {
+          "id": "user12",
+          "name": "Kevin Brown",
+          "avatar": "KB",
+          "email": "kevin@example.com"
+        }
+      ],
+      "commentsCount": 7,
+      "attachmentsCount": 1,
+      "tags": ["ui", "components"]
+    }
+  ]
+}
